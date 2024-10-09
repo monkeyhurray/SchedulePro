@@ -1,5 +1,5 @@
 import React from 'react';
-import { WEEK } from '@/app/constants/dateName';
+import { WEEK } from '@/constants/dateName';
 
 const CalendarHead = () => {
   return (

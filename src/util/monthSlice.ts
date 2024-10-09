@@ -1,7 +1,4 @@
-import { WEEK } from '@/app/constants/dateName';
-import dayjs from '@/util/dayjs';
-
-const sliceThisMonth = (month: (string | number)[]) => {
+export const sliceThisMonth = (month: (string | number)[]) => {
   const monThToWeek = [];
 
   const divide = Math.ceil(month.length / 7);
@@ -14,19 +11,3 @@ const sliceThisMonth = (month: (string | number)[]) => {
 
   return monThToWeek;
 };
-
-const monthDay: (string | number)[] = [];
-
-const emptyLength = WEEK.findIndex((e) => e === dayjs().date(1).format('dddd'));
-
-for (let i = 0; i < emptyLength; i++) {
-  monthDay.push('');
-}
-
-for (let i = 1; i <= dayjs().daysInMonth(); i++) {
-  monthDay.push(i);
-}
-
-const calendarManth = sliceThisMonth(monthDay);
-
-export { calendarManth };

@@ -1,13 +1,11 @@
-import React from 'react';
-
-import { calendarManth } from '@/util/monthSlice';
+import { useSelectDays } from '@/hooks/useCalendarHook';
 
 const CalendarBody = () => {
-  //   const weekDay = sliceThisMonth(monthDay);
+  const calendarMonth = useSelectDays();
 
   return (
     <tbody>
-      {calendarManth.map((weeks, weeksIdx) => {
+      {calendarMonth.map((weeks, weeksIdx) => {
         return (
           <tr key={weeksIdx}>
             {weeks.map((week, weekIdx) => {
