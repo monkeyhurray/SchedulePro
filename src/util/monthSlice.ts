@@ -8,6 +8,5 @@ export const sliceThisMonth = (month: (string | number)[]) => {
 
     monThToWeek.push(oneWeek);
   }
-
   return monThToWeek;
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import '@/styles/style.scss';
 
@@ -12,8 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <body>{children}</body>
+    <html lang="ko">
+      <body>
+        <main className="main">{children}</main>
+      </body>
     </html>
   );
 }

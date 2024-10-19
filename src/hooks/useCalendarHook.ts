@@ -6,26 +6,42 @@ import { sliceThisMonth } from '@/util/monthSlice';
 const useSelectMonth = () => {
   const { chooseMonth } = useMonthStore();
 
-  const d = new Date(2024, dayjs().month() + chooseMonth);
+  const currentD = dayjs().add(chooseMonth, 'month').set('date', 1);
 
-  const year = dayjs(d).format('YYYY');
-  const month = dayjs(d).format('MMMM');
-  const day = dayjs(d).format('dddd');
-  const lastDay = dayjs(d).endOf('month').format('D');
-  return { year, month, day, lastDay };
+  const year = dayjs(currentD).format('YYYY');
+  const month = dayjs(currentD).format('MMMM');
+  const day = dayjs(currentD).format('dddd');
+  const lastDay = dayjs(currentD).endOf('month').format('D');
+
+  const prevMonth = dayjs(currentD.subtract(1, 'month'))
+    .endOf('month')
+    .format('D');
+
+  return { year, month, day, lastDay, prevMonth };
 };
 
 const useSelectDays = () => {
-  const { day, lastDay } = useSelectMonth();
+  const { day, lastDay, prevMonth } = useSelectMonth();
   const monthDay: (string | number)[] = [];
 
   const emptyLength = WEEK.findIndex((e) => e === day);
 
-  for (let i = 0; i < emptyLength; i++) {
-    monthDay.push('');
+  for (
+    let i = parseInt(prevMonth) - emptyLength + 1;
+    i <= parseInt(prevMonth);
+    i++
+  ) {
+    monthDay.push(i);
   }
 
   for (let i = 1; i <= parseInt(lastDay); i++) {
+    monthDay.push(i);
+  }
+
+  const sliceMonth = sliceThisMonth([...monthDay]);
+  const nextDays = 7 - sliceMonth[sliceMonth.length - 1].length;
+
+  for (let i = 1; i <= nextDays; i++) {
     monthDay.push(i);
   }
 

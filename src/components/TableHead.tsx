@@ -1,4 +1,6 @@
 import React from 'react';
+
+import styles from '@/styles/components/TableHead.module.scss';
 import { useMonthStore } from '@/store/monthStore';
 import { useSelectMonth } from '@/hooks/useCalendarHook';
 
@@ -7,14 +9,14 @@ const TableHead = () => {
   const { year, month } = useSelectMonth();
 
   return (
-    <div>
-      <p>
-        <span onClick={() => setMinusChooseMonth()}>이전 달</span>
-        <span>{year}년</span>
-        <span>{month}</span>
-        <span onClick={() => setPlusChooseMonth()}>다음 달</span>
-      </p>
-    </div>
+    <p className={styles['calendar-head']}>
+      <span onClick={() => setMinusChooseMonth()}>이전 달</span>
+      <span>
+        {year}년 {month}
+      </span>
+
+      <span onClick={() => setPlusChooseMonth()}>다음 달</span>
+    </p>
   );
 };
 
