@@ -3,13 +3,9 @@
   display: table;
   border: 2px solid map-get($map: $colors, $key: main-color);
 
-  // text-align: center;
   width: 100%;
 
   &__tr {
-    // display: table-row;
-    // width: 100%;
-    // border: 2px solid black;
     &__td {
       padding: 0.5rem 1.5rem;
       border: 1px solid, map-get($map: $colors, $key: main-color);
